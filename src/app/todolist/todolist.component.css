@@ -1,0 +1,103 @@
+.container{
+  margin-top: 8%;
+}
+
+.main {
+  display: flex;
+  justify-content: space-evenly;
+}
+.main div {
+  width: 50%;
+}
+.row .col-sm-12 {
+  border: 0px solid black;
+  width: 250%;
+}
+
+.taskComplete{
+    text-decoration: line-through;
+    font-weight: bold;
+    color: #F16667;
+    font-style: italic;
+}
+
+.leftPane {
+  border: 0px solid red;
+}
+
+input[type=text]{
+  background-color: #FEFBF4;
+}
+
+.form-inline label,
+input,
+button {
+  margin-right: 3%;
+}
+
+div .totalTasks.row{
+  font-size: 2em;
+}
+
+.btn.btn-default.delete {
+  float: right;
+  margin-top: -1.15%;
+}
+/*For small screens*/
+@media all and (max-width: 991px) {
+
+  .form-inline label,
+  input,
+  button {
+    margin: 1%;
+  }
+  .form-inline input {
+    width: 50%;
+  }
+  .totalTasks {
+    display: none;
+  }
+  .main div {
+    width: 70%;
+    border: 0px solid black;
+  }
+  .list-group {
+    width: 50%;
+  }
+  .list-group-item {
+    width: 75%;
+    padding-left: 0px;
+  }
+  .checkbox-inline {
+    width: 70%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+  }
+
+  .taskName {
+    margin-left: 25%;
+  }
+  .checkbox {
+    margin-left: -25px;
+  }
+
+  /* .row .col-sm-12 {
+    border: 0px solid black;
+    width: 250%;
+  }*/
+  .main div {
+    width: 100%;
+    border: 0px solid black;
+  }
+
+  .form-control.ng-dirty.ng-touched.ng-valid,
+  .form-control.ng-pristine.ng-invalid.ng-touched,
+  .form-control.ng-untouched.ng-pristine.ng-invalid,
+  .form-control.ng-dirty.ng-invalid.ng-touched,
+  .form-control.ng-dirty.ng-valid.ng-untouched,
+  .form-control.ng-dirty.ng-invalid.ng-untouched
+    .form-control.ng-dirty.ng-valid.ng-touched {
+    width: 35%;
+  }
+}

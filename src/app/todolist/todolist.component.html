@@ -1,0 +1,63 @@
+
+<div class="container">
+
+    <div class="main">
+       
+        <div class="leftPane"> 
+              <!-- form : To enable users enter tasks and submit.-->          
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-inline" #f="ngForm"
+                        (ngSubmit)="onSubmit(f)">
+                        <label for="task">Task</label>
+                        <input
+                            id="task"
+                            class="form-control"
+                            ngModel
+                            #task="ngModel"
+                            name="task"
+                            type="text"
+                            placeholder="Enter your task"
+                            required>
+                        <button type="submit" class="btn btn-default"
+                            [disabled]="!f.valid">Submit</button>
+                        <button type="reset" class="btn btn-default"
+                            (click)="clearForm(f)">reset</button>
+                    </form><br>
+                    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+                </div>
+            </div>
+            <hr>
+            <!-- Task list : Displays list of tasks. -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="list-group" *ngIf="set.size > 3">
+                        <li class="list-group-item">
+                            <input type="checkbox" name="" id="" (change)="handleAllTasks()">Select all
+                            <button class="btn btn-default delete" (click)="deleteAllTasks()">Delete all</button>
+                        </li>
+                    </ul>
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let i of set">
+                            <span *ngIf="i">
+                                <form class="form-inline">                                    
+                                    <label class="checkbox-inline">
+                                        <input class="checkbox" type="checkbox" value="i" name="isTaskCompleted" [(ngModel)]="i.completed">
+                                        <span class="taskName" [ngClass]="{'taskComplete': i.completed}">{{i.task}}</span>
+                                    </label>
+                                    <button class="btn btn-default delete" (click)="deleteTask(i)">delete</button>
+                                </form>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- right side bar: task count -->
+        <div class="totalTasks row">
+            <span style="float:right">You have {{totalTasks}} task(s) in total.</span>
+        </div>
+        {{isChecked}}
+    </div>
+</div>
