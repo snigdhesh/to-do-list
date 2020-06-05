@@ -2,12 +2,16 @@
 <div class="container">
 
     <div class="main">
-       
-        <div class="leftPane"> 
-              <!-- form : To enable users enter tasks and submit.-->          
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>You have {{totalTasks}} task(s) in total.</h1>
+            </div>
+        </div>
+        <div>
+            <!-- form : To enable users enter tasks and submit.-->
             <div class="row">
                 <div class="col-sm-12">
-                    <form class="form-inline" #f="ngForm"
+                    <form class="form-inline form" #f="ngForm"
                         (ngSubmit)="onSubmit(f)">
                         <label for="task">Task</label>
                         <input
@@ -23,7 +27,7 @@
                             [disabled]="!f.valid">Submit</button>
                         <button type="reset" class="btn btn-default"
                             (click)="clearForm(f)">reset</button>
-                    </form><br>
+                    </form>
                     <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
                 </div>
             </div>
@@ -31,33 +35,44 @@
             <!-- Task list : Displays list of tasks. -->
             <div class="row">
                 <div class="col-sm-12">
-                    <ul class="list-group" *ngIf="set.size > 3">
+                    <ul class="list-group" *ngIf="set.size> 3">
                         <li class="list-group-item">
-                            <input type="checkbox" name="" id="" (change)="handleAllTasks()">Select all
-                            <button class="btn btn-default delete" (click)="deleteAllTasks()">Delete all</button>
+                            <form action="" class="form-inline">
+                                <label for="">
+                                    <input
+                                        type="checkbox"
+                                        name=""
+                                        id=""
+                                        (change)="handleAllTasks()">
+                                    Select all
+                                </label>
+                                <button class="btn btn-default delete"
+                                    (click)="deleteAllTasks()">Delete all</button>
+                            </form>
                         </li>
                     </ul>
-                    
+
                     <ul class="list-group">
                         <li class="list-group-item" *ngFor="let i of set">
-                            <span *ngIf="i">
-                                <form class="form-inline">                                    
-                                    <label class="checkbox-inline">
-                                        <input class="checkbox" type="checkbox" value="i" name="isTaskCompleted" [(ngModel)]="i.completed">
-                                        <span class="taskName" [ngClass]="{'taskComplete': i.completed}">{{i.task}}</span>
-                                    </label>
-                                    <button class="btn btn-default delete" (click)="deleteTask(i)">delete</button>
-                                </form>
-                            </span>
+                            <form class="form-inline task-list" *ngIf="i">
+                                <label
+                                    class="checkbox-inline"
+                                    [ngClass]="{'taskComplete':i.completed}">
+                                    <input
+                                        class="checkbox"
+                                        type="checkbox"
+                                        value="i"
+                                        name="isTaskCompleted"
+                                        [(ngModel)]="i.completed" />
+                                    {{i.task}}
+                                </label>
+                                <button class="btn btn-default delete"
+                                    (click)="deleteTask(i)">delete</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- right side bar: task count -->
-        <div class="totalTasks row">
-            <span style="float:right">You have {{totalTasks}} task(s) in total.</span>
-        </div>
-        {{isChecked}}
     </div>
 </div>
